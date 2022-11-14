@@ -27,7 +27,7 @@ app.config['MAIL_USE_TLS'] = True
 mail = Mail(app)
 Session(app)
 #connect to db
-db = SQL('database.db')
+db = SQL('postgres://kyrfgvkvuizrvz:d6b2dfdc20655acd2891420550c62fc3f377d28dad1f392c6e3cef8615000981@ec2-54-163-34-107.compute-1.amazonaws.com:5432/d8tdnlb8fum0c2')
 # Set lock for data base
 lock = Lock()
 
