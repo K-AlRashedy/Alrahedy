@@ -1,0 +1,10 @@
+{% extends 'base.html' %} 
+{% block title%}Validate Email{% endblock %}
+{% block body %}
+<form action="{{action}}" method="POST">
+  <h1>{{session['email']}}</h1>
+  <input type="text" pattern="[0-9]{6}" placeholder="validation code" name="validationcode" required autofocus/>
+  {%if error%}<small>{{error}}</small>{%endif%}
+  <input type="submit" value="Validate"/>
+</form>
+{% endblock %}

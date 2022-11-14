@@ -1,0 +1,69 @@
+{%extends 'admin.html'%} {%block main%}
+<form
+  action="/editproduct/{{product['id']}}"
+  method="POST"
+  enctype="multipart/form-data"
+  class="grid-container"
+>
+  <div class="slider">
+    <input checked class="radio" name="radio" type="radio" id="radio0" />
+    <input class="radio" name="radio" type="radio" id="radio1" />
+    <input class="radio" name="radio" type="radio" id="radio2" />
+    <input class="radio" name="radio" type="radio" id="radio3" />
+
+    <div class="slides">
+        {%for i in product['range']%}
+      <div class="img-box">
+        <label for="image{{i}}"><img src="/i/{{product['images'][i]}}" alt=""></label
+        ><input
+          type="file"
+          id="image{{i}}"
+          accept="image/png"
+          name="image{{i}}"
+        />
+      </div>
+      {%endfor%}
+      </div>
+      <div class="lable-btns">
+         {%for i in product['range']%}
+        <label for="radio{{i}}"><img src="/i/{{product['images'][i]}}" alt=""></label>
+        {%endfor%}
+      </div>
+    </div>
+  </div>
+  <div class="name-pro">
+    <div class="catagory">
+      <select name="catagory" id="catagory">
+        {%for catagory in catagories%}
+        <option value="{{catagory}}" {%if catagory == product['catagory']%} selected {%endif%}>{{catagory}}</option>
+        {%endfor%}
+      </select>
+<select name="sub_catagory" id="sub-catagory"></select>
+    </div>
+    <div class="price-pro">
+      Price <input type="number" value="{{product['price']}}" required name="price" /> L.E
+    </div>
+    <textarea required name="name" autocomplete="off" autofocus>{{product['name']}}</textarea>
+    <div class="buy-cart-btns product-page">
+      <div class="buy-btn">Buy Now</div>
+      <div class="cart-btn">Add To Cart</div>
+    </div>
+    <div class="shipping">
+      <div><i class="fa-solid fa-truck-fast"></i> Shipping any Where</div>
+      <div>
+        <a href=""><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="description">
+    <textarea required name="description" autocomplete="off">{{product['description']}}</textarea>
+  </div>
+  <div class="images column">
+    {%for img in product['images']%}
+    <img src="/i/{{img}}" alt="" />
+
+    {%endfor%}
+  </div>
+  <div class="TODO"><input type="submit" value="Save" /></div>
+</form>
+{%endblock%}

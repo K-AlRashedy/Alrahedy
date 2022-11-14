@@ -1,0 +1,57 @@
+{%extends 'layout.html'%} {%block main%} {%if products%}
+<div class="cart-items">
+  {%for product in products%}
+  <div class="cart-card" title="{{product['id']}}">
+    <div class="card-img-box">
+      <a href="/product?i={{product['id']}}">
+        <img src="/i/{{product['images'][0]}}" alt="" />
+      </a>
+    </div>
+    <div class="details">
+      <a href="/product?i={{product['id']}}">
+        <div class="name">{{product['name']}}</div>
+        <div class="price">Price {{product['price']}} L.E</div>
+      </a>
+      <div class="number">
+        <div class="minus">-</div>
+        <input
+          type="number"
+          value="{{product['number']}}"
+          title="{{product['id']}}"
+        />
+        <div class="plus">+</div>
+      </div>
+      <div title="{{product['id']}}" class="remove">Remove</div>
+    </div>
+  </div>
+  {%endfor%}
+</div>
+<div class="total">
+  <h1>Order details</h1>
+  <table class="tot-table">
+    <thead>
+      <tr>
+        <td>Subtotal</td>
+        <td class="cart-total">{{total}} L.E</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>discount</td>
+        <td>0 %</td>
+      </tr>
+      <tr>
+        <td>total</td>
+        <td class="cart-total">{{total}} L.E</td>
+      </tr>
+    </tbody>
+  </table>
+  <a href="/buy" class="checkout">Check Out</a>
+  <a href="/">continue shopping</a>
+</div>
+
+{%endif%} {%if not products%}
+<h1>Your Cart Is Empty</h1>
+
+{%endif%} {%endblock%}
+<!--  -->

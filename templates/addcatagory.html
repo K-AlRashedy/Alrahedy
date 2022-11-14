@@ -1,0 +1,11 @@
+{%extends 'admin.html'%} {%block main%}
+<div class="container">
+  <form class="form" action="/addcatagory" method="post">
+    <input type="text" name="catagory" required placeholder="Catagory" />
+   <input type="text" id="sub_catagory">
+   <div class="sub">
+   </div>
+    <input type="submit" value="Create" />
+  </form>
+</div>
+{%endblock%}

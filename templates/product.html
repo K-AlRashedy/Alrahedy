@@ -1,0 +1,48 @@
+{%extends 'layout.html'%} {% block main%}
+<div class="grid-container">
+  <div class="slider">
+    {%for i in product['range']%}
+    <input class="radio" name="radio" type="radio" id="radio{{i}}" />
+    {%endfor%}
+
+    <div class="slides">
+      {%for image in product['images']%}
+      <div class="img-box">
+        <img src="/i/{{image}}" alt="" />
+      </div>
+      {%endfor%}
+    </div>
+    <div class="lable-btns">
+      {%for i in product['range']%}
+      <label for="radio{{i}}"><img src="/i/{{product['images'][i]}}" alt=""></label>
+      {%endfor%}
+    </div>
+  </div>
+  <div class="images"></div>
+
+  <div class="name-pro">
+    <div class="catagory-sub">home some thing</div>
+    <div class="price-pro">Price {{product['price']}} L.E</div>
+    {{product['name']}}
+    <div class="buy-cart-btns product-page">
+      <div title="{{product['id']}}" class="cart-btn">Add To Cart</div>
+      <div title="{{product['id']}}" class="buy-btn">Buy Now</div>
+    </div>
+    <div class="shipping">
+      <div><i class="fa-solid fa-truck-fast"></i> Shipping any Where</div>
+      <div>
+        <a href=""><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="description">{{product['description']}}</div>
+  <div class="images column">
+    {%for image in product['images']%}
+    <img src="/i/{{image}}" alt="" />
+    {%endfor%}
+  </div>
+</div>
+<script>
+  document.querySelector(".radio:first-child").checked = true;
+</script>
+{%endblock%}

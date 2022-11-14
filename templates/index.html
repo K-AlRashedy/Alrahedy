@@ -1,0 +1,24 @@
+{%extends 'layout.html'%}
+{%block main%} 
+{%for product in products%}
+<div class="product-card">
+  <a href="/product?i={{product['id']}}" class="card-img-box">
+    <img src="/i/{{product['images'][0]}}" alt="" />
+  </a>
+  <div class="card-details">
+    <a href="/product?i={{product['id']}}">
+      <div class="card-name">{{product['name']}}</div>
+      <div class="price">
+        Price
+        <div class="after">{{product['price']}} L.E</div>
+        <div class="before">550 L.E</div>
+      </div>
+    </a>
+    <div class="buy-cart-btns">
+      <div title="{{product['id']}}" class="buy-btn">Buy Now</div>
+      <div title="{{product['id']}}" class="cart-btn">Add To Cart</div>
+    </div>
+  </div>
+</div>
+{%endfor%} 
+{%endblock%}

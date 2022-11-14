@@ -1,0 +1,59 @@
+{%extends 'admin.html'%} {%block main%}
+<form action="/orders" method="POST" class="filters">
+  <div class="status">
+    <label for="status">Status</label>
+    <select name="status" id="status">
+      <option value="all" {%if status == 'all'%} selected {%endif%}>All</option>
+      <option value="pending" {%if status == 'pending'%} selected {%endif%}>pending</option>
+      <option value="inprogress" {%if status == 'inprogress'%} selected {%endif%}>inprogress</option>
+      <option value="indelivery" {%if status == 'indelivery'%} selected {%endif%}>indelivery</option>
+      <option value="delivered" {%if status == 'delivered'%} selected {%endif%}>delivered</option>
+      <option value="return" {%if status == 'return'%} selected {%endif%}>return</option>
+    </select>
+  </div>
+  <div class="paid-op">
+    <label for="paid">paid</label>
+    <select name="paid" id="paid">
+        
+      <option value="all" {%if paid == 'all'%} selected {%endif%}>All</option>
+      <option value="paid" {%if paid == 'paid'%} selected {%endif%}>paid</option>
+      <option value="due" {%if paid == 'due'%} selected {%endif%}>due</option>
+    </select>
+  </div>
+  <div class="orders-number">
+    <label for="limit">Orders Number</label>
+    <input type="number" value="{{limit}}" name="limit" id="number">
+  </div>
+  <button type="submit"><i class="bx bx-search"></i></button>
+</form>
+<div class="details order-page">
+  <div class="orders">
+    <div class="title">
+      <div class="li-name">Recent Orders</div>
+      <a href="#">Veiw all</a>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Order number</th>
+          <th>Customer</th>
+          <th>Price</th>
+          <th>Paid</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for order in orders%}
+        <tr title="{{order['order_id']}}">
+          <td>{{order['order_id']}}</td>
+          <td>{{order['fname']}}</td>
+          <td>{{order['total']}} L.E</td>
+          <td><div class="{{order['paid']}}">{{order['paid']}}</div></td>
+          <td><div class="{{order['status']}}">{{order['status']}}</div></td>
+        </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+  </div>
+</div>
+{%endblock%}

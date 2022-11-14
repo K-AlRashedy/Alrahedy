@@ -1,0 +1,22 @@
+{%extends 'admin.html'%} {%block main%}
+<div class="container">
+  <form class="form" action="/createadmin" method="post">
+    <input type="text" name="username" required placeholder="UserName" />
+    <input
+      type="password"
+      name="password"
+      id="password"
+      required
+      placeholder="Password"
+    /><input
+      type="password"
+      name="confirmation"
+      id="confirmation"
+      required
+      placeholder="Confirm password"
+    />
+    <p id="confirm"></p>
+    <input type="submit" value="Create" />
+  </form>
+</div>
+{%endblock%}

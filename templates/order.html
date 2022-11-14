@@ -1,0 +1,64 @@
+{%extends 'admin.html'%} {%block main%}
+<div class="order-content">
+          <img src="../static/logo.png" alt="">
+          <div class="order-data">
+            <div class="oreder-id">order Id: OL- {{order['order_id']}}</div>
+            <div class="date">Date: {{order['date']}}</div>
+            <div class="cleint-name">Cleint Name: {{order['fname'] + " " + order['lname']}}</div>
+            <div class="adress">Adress: {{order['adress']}}</div>
+            <div class="cleint-phone">Cleint Phone: {{order['phone']}}</div>
+            <div class="status">Status: <div class="{{order['status']}}">{{order['status']}}</div></div>
+            <div class="paid-status">Paid: <div class="{{order['paid']}}">{{order['paid']}}</div></div>
+          </div>
+          <div class="orders items">
+          <table class="order-items">
+            <thead>
+              <tr>
+            <th>product img</th>
+            <th>product name</th>
+            <th>price</th>
+            <th>Quantity</th>
+            <th>total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for product in order["cart"]%}
+            <tr title="{{product['id']}}">
+                <td><img src="/i/{{product['images'][0]}}" alt=""></td>
+                <td>{{product['name']}}</td>
+                <td>{{product['price']}} L.E</td>
+                <td>{{product['number']}}</td>
+                <td>{{product['price'] * product['number']}} L.E</td>
+            </tr>
+            {%endfor%}
+          </tbody>
+          </table></div>
+          <div class="total">
+          total: {{order['total']}} L.E
+          </div>
+        </div>
+<form action="/order" method="POST" class="filters">
+  <div class="status">
+    <label for="status">Status</label>
+    <select name="status" id="status">
+      <option value="pending" {%if order['status'] == 'pending'%} selected {%endif%}>pending</option>
+      <option value="inprogress" {%if order['status'] == 'inprogress'%} selected {%endif%}>inprogress</option>
+      <option value="indelivery" {%if order['status'] == 'indelivery'%} selected {%endif%}>indelivery</option>
+      <option value="delivered" {%if order['status'] == 'delivered'%} selected {%endif%}>delivered</option>
+      <option value="return" {%if order['status'] == 'return'%} selected {%endif%}>return</option>
+    </select>
+  </div>
+  <div class="paid-op">
+    <label for="paid">paid</label>
+    <select name="paid" id="paid">
+      <option value="paid" {%if order['paid'] == 'paid'%} selected {%endif%}>paid</option>
+      <option value="due" {%if order['paid'] == 'due'%} selected {%endif%}>due</option>
+    </select>
+  </div>
+  <div class="orders-number" hidden>
+    <label for="id">Order id</label>
+    <input type="number" value="{{order['order_id']}}"  name="id" id="id">
+  </div>
+  <button type="submit"><i class='bx bx-save'></i></button>
+</form>
+{%endblock%}

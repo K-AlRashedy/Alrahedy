@@ -1,0 +1,52 @@
+{% extends 'base.html'%} {%block title%}Sign Up{% endblock%} {% block body%}
+<form action="/signup" method="post" style="gap: 20px">
+  <input
+    type="text"
+    name="fname"
+    placeholder="First Name"
+    required
+    autofocus
+    autocomplete="off"
+  />
+
+  <input type="text" name="lname" placeholder="Last Name" required />
+
+  <input type="email" name="email" placeholder="E-mail" required />
+
+  <input
+    type="tel"
+    pattern="[0-9]{11}"
+    name="phone"
+    placeholder="Phone"
+    required
+  />
+
+  <input
+    type="tel"
+    pattern="[0-9]{11}"
+    name="phone_op"
+    placeholder="Optional Phone"
+    autocomplete="off"
+  />
+
+  <input
+    type="password"
+    id="password"
+    name="password"
+    placeholder="Password"
+    required
+  />
+
+  <input
+    type="password"
+    id="confirmation"
+    name="confirmation"
+    placeholder="Confirm Password"
+    required
+
+  />
+
+  <p id="confirm"></p>
+  <input type="submit" value="Sign Up" />
+</form>
+{% endblock%}

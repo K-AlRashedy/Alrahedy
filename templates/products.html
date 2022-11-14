@@ -1,0 +1,21 @@
+{%extends 'admin.html'%}
+{%block main%} 
+{%for product in products%}
+<div class="product-card" title="{{product['id']}}">
+  <a href="/editproduct/{{product['id']}}" class="card-img-box">
+    <img src="/i/{{product['images'][0]}}" alt="" />
+  </a>
+  <div class="card-details">
+    <a href="/editproduct/{{product['id']}}">
+      <div class="card-name">{{product['name']}}</div>
+      <div class="price">
+        Price
+        <div class="after">{{product['price']}} L.E</div>
+        <div class="before">550 L.E</div>
+      </div>
+    </a>
+    <div title="{{product['id']}}" class="remove">Remove</div>
+  </div>
+</div>
+{%endfor%} 
+{%endblock%}

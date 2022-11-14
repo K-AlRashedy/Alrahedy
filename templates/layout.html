@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/product.css" />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/home.css" />
+    <link rel="stylesheet" href="../static/cart.css" />
+    <link rel="stylesheet" href="../static/buy.css" />
+    <!-- <link rel="icon" href="favicon.ico" > -->
+    <link href="static/favicon.ico" rel="icon" />
+  </head>
+  <body>
+    <nav class="navigation">
+      <div class="nav">
+        <a href="/" class="logo"><img src="/static/logo.png" alt="" /></a>
+        <div class="wrapper">
+          <form action='/search' class="search">
+            <input
+              type="text"
+              name="Q"
+              autocomplete="off"
+              autofocus
+              placeholder="Search"
+              id="search"
+            />
+            <div class="auto-comp"></div>
+            <button class="icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+
+        {%if session['user_id']%}
+
+        <div class="user-cart">
+          <div class="cart">
+            <a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a>
+          </div>
+          <div class="user">
+            <img src="../static/download.png" alt="" />
+            <div class="user-options active">
+              <li><a>{{session['fname']}}</a></li>
+              <li><a>profile</a></li>
+              <li><a>Orders</a></li>
+              <li><a href="/logout">Logout <i class="fa-solid fa-right-from-bracket"></i></a></li>
+            </div>
+          </div>
+        </div>
+
+        {% endif%} {%if not session['user_id']%}
+        <div class="user-cart">
+          <div class="cart">
+            <a href="/cart"><i class="bx bx-cart-alt"></i></a>
+          </div>
+          <a href="/login">login</a>
+        </div>
+        {% endif%}
+      </div>
+      <div class="massage">the item have been Added to cart Successfly <button>X</button></div>
+    </nav>
+    <main {%if classs%} class="{{classs}}"{%endif%}>{%block main%}{%endblock%}</main>
+    <footer></footer>
+    <script src="../static/main.js"></script>
+        <script
+      src="https://kit.fontawesome.com/ee06dc6302.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title%}Log In{% endblock %} 
+{% block body %}
+<h1>{% if session['email']%}This email Exsists{%endif%}</h1>
+<form action="" method="POST">
+  <input 
+  type="email" 
+  name="email" 
+  placeholder="Email" 
+  required 
+  {%if not session['email'] %} autofocus {%endif%} 
+  {%if session['email']%} value="{{session['email']}}" {%endif%} />
+  <input type="password"
+  name="password" 
+  placeholder="Password" {%if session['email'] %} autofocus {%endif%}
+  required /> 
+  {%if error%}<small class="error">{{error}}</small>{%endif%}
+  <input type="submit" value="Login" />
+  <div class="small">
+    <small>Don't have account <a href="/signup">Sign UP</a></small
+    ><br />
+    <small><a href="/changepassword">Forgot Password</a></small>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,98 @@
+{%extends 'admin.html'%} {%block main%}
+<form
+  action="/addproduct"
+  method="POST"
+  enctype="multipart/form-data"
+  class="grid-container"
+>
+  <div class="slider">
+    <input checked class="radio" name="radio" type="radio" id="radio0" />
+    <input class="radio" name="radio" type="radio" id="radio1" />
+    <input class="radio" name="radio" type="radio" id="radio2" />
+    <input class="radio" name="radio" type="radio" id="radio3" />
+
+    <div class="slides">
+      <div class="img-box">
+        <label for="image0"><i class="bx bx-upload"></i></label
+        ><input
+          type="file"
+          id="image0"
+          accept="image/png"
+          name="image0"
+          required
+        />
+      </div>
+      <div class="img-box">
+        <label for="image1"><i class="bx bx-upload"></i></label
+        ><input
+          type="file"
+          id="image1"
+          accept="image/png"
+          name="image1"
+
+        />
+      </div>
+      <div class="img-box">
+        <label for="image2"><i class="bx bx-upload"></i></label
+        ><input
+          type="file"
+          id="image2"
+          accept="image/png"
+          name="image2"
+
+        />
+      </div>
+      <div class="img-box">
+        <label for="image3"><i class="bx bx-upload"></i></label
+        ><input
+          type="file"
+          id="image3"
+          accept="image/png"
+          name="image3"
+
+        />
+      </div>
+    </div>
+    <div class="lable-btns">
+      <label for="radio0"></label>
+      <label for="radio1"></label>
+      <label for="radio2"></label>
+      <label for="radio3"></label>
+    </div>
+  </div>
+  <div class="name-pro">
+    <div class="catagory">
+      <select name="catagory" id="catagory">
+        {%for catagory in catagories%}
+        <option value="{{catagory}}">{{catagory}}</option>
+        {%endfor%}
+      </select>
+<select name="sub_catagory" id="sub-catagory"></select>
+    </div>
+    <div class="price-pro">
+      Price <input type="number" required name="price" /> L.E
+    </div>
+    <textarea required name="name" autocomplete="off" autofocus></textarea>
+    <div class="buy-cart-btns product-page">
+      <div class="buy-btn">Buy Now</div>
+      <div class="cart-btn">Add To Cart</div>
+    </div>
+    <div class="shipping">
+      <div><i class="fa-solid fa-truck-fast"></i> Shipping any Where</div>
+      <div>
+        <a href=""><i class="fa-brands fa-whatsapp"></i> Contact Us</a>
+      </div>
+    </div>
+  </div>
+  <div class="description">
+    <textarea required name="description" autocomplete="off"></textarea>
+  </div>
+  <div class="images column">
+    <img src="BossBaby.png" alt="" />
+    <img src="BossBaby.png" alt="" />
+    <img src="BossBaby.png" alt="" />
+    <img src="BossBaby.png" alt="" />
+  </div>
+  <div class="TODO"><input type="submit" value="Save" /></div>
+</form>
+{%endblock%}

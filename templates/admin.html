@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admins</title>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../static/style.css" />
+    <link rel="stylesheet" href="../static/product.css" />
+    <link rel="stylesheet" href="../static/admin.css" />
+    {%if font%}
+    <style>
+      :root {
+        font-size: 10px !important;
+      }
+    </style>
+    {%endif%}
+  </head>
+  <body>
+    <div class="navigation active">
+      <ul>
+        <li>
+          <a title="LOGO" href="#">
+            <div class="icon"><img src="../static/logo.png" alt=""></i></div>
+            </a>
+        </li>
+        <li>
+          <a title="Dashboard" href="/admin"
+            ><div class="icon"><i class="bx bxs-dashboard"></i></div>
+            <div class="li-name">Dashboard</div></a
+          >
+        </li>
+        <li>
+          <a title="Orders" href="/orders"
+            ><div class="icon"><i class="bx bx-cart-alt"></i></div>
+            <div class="li-name">Orders</div></a
+          >
+        </li>
+        <li>
+          <a title="Products" href="#"
+            ><div class="icon"><i class="bx bx-list-check"></i></div>
+            <div class="li-name">Products</div></a
+          >
+        </li>
+        <li>
+          <a title="Add Product" href="/addproduct"
+            ><div class="icon"><i class="bx bx-plus-circle"></i></div>
+            <div class="li-name">Add Product</div></a
+          >
+        </li>
+        <li>
+          <a title="Add admin" href="/createAdmin"
+            ><div class="icon"><i class="bx bx-user-plus"></i></div>
+            <div class="li-name">Add User</div></a
+          >
+        </li>
+        <li>
+          <a title="Add Catagory" href="/addcatagory"
+            ><div class="icon"><i class="bx bx-message-square-add"></i></div>
+            <div class="li-name">Add Catagory</div></a
+          >
+        </li>
+        <li>
+          <a title="Products" href="/products"
+            ><div class="icon"><i class="bx bx-comment-detail"></i></div>
+            <div class="li-name">Products</div></a
+          >
+        </li>
+      </ul>
+    </div>
+    <main class="active">
+      <div class="search-bar">
+        <div class="menu"><i class="bx bx-menu-alt-left"></i></div>
+        <form action="" method="get">
+          <input
+            type="search"
+            placeholder="Search"
+            name="q"
+            id="search"
+          /><button type="submit"><i class="bx bx-search"></i></button>
+        </form>
+        <div class="user"><img src="download.png" alt="" /></div>
+      </div>
+      {% block main%}
+
+      <div class="cards-box">
+        <div class="card">
+          <div class="icon"><i class="bx bx-money"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['total_due']}} L.E</div>
+            <div class="name">Due Cash</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['orders_count']}}</div>
+            <div class="name">Total Orders</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bx-user"></i></div>
+          <div class="container">
+            <div class="number">5</div>
+            <div class="name">Visitors</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bx-question-mark"></i></div>
+          <div class="container">
+            <div class="number">000</div>
+            <div class="name">TODO</div>
+          </div>
+        </div>
+      </div>
+      <div class="details">
+        <div class="orders">
+          <div class="title">
+            <div class="name">Recent Orders</div>
+            <a href="#">Veiw all</a>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Order number</th>
+                <th>Customer</th>
+                <th>Price</th>
+                <th>Paid</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+            {%for order in orders%}  
+              <tr title="{{order['order_id']}}">
+                <td>{{order['order_id']}}</td>
+                <td>{{order['fname']}}</td>
+                <td>{{order['total']}} L.E</td>
+                <td><div class="{{order['paid']}}">{{order['paid']}}</div></td>
+                <td><div class="{{order['status']}}">{{order['status']}}</div></td>
+              </tr>{%endfor%}
+            </tbody>
+          </table>
+        </div>
+        <div class="cards-box cl">
+          <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['pending']}}</div>
+            <div class="name">Pending Orders</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['inprogress']}}</div>
+            <div class="name">Inprogress Orders</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['indelivery']}}</div>
+            <div class="name">Indelivery Orders</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['delivered']}}</div>
+            <div class="name">Delivered Orders</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="icon"><i class="bx bxs-cart-alt"></i></div>
+          <div class="container">
+            <div class="number">{{orders_data['return']}}</div>
+            <div class="name">Return Orders</div>
+          </div>
+        </div>
+       
+        </div>
+      </div>
+      {%endblock%}
+    </main>
+    <script>
+      document.querySelector(".menu").addEventListener("click", () => {
+        document.querySelector(".navigation").classList.toggle("active");
+        document.querySelector("main").classList.toggle("active");
+      });
+      [...document.querySelectorAll(".orders table tr")].forEach((element) => {
+        element.addEventListener("click", () => {
+          window.location.href = `/order?id=${element.getAttribute("title")}`;
+        });
+      });
+      [...document.querySelectorAll(".orders table.order-items tbody tr")].forEach((element) => {
+        element.addEventListener("click", () => {
+          window.location.href = `/product?i=${element.getAttribute("title")}`;
+        });
+      });
+      document.querySelector("#sub_catagory").addEventListener('change', (e) => {
+        document.querySelector(".sub" ).innerHTML += `<div><input type="checkbox" value="${e.target.value}" name="sub" id="${e.target.value}" checked>
+        <label for="${e.target.value}">${e.target.value}</label></div>`;
+        e.target.value = "";
+});
+    </script>
+    {%if font%}
+    <script src="../static/admin.js"></script>
+        <script
+      src="https://kit.fontawesome.com/ee06dc6302.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+let removes = document.querySelectorAll(".remove");
+for (let remove of removes) {
+  remove.addEventListener("click", () => {
+    fetch(`/editproduct/${remove.getAttribute("title")}?r=true`)
+      .then((response) => {
+        response = response.json();
+        return response;
+      });
+    document
+      .querySelector(
+        `div.product-card[title='${remove.getAttribute("title")}']`
+      )
+      .remove();
+  });
+}
+    </script>
+    {%endif%}
+  </body>
+</html>

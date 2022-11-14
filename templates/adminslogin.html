@@ -1,0 +1,21 @@
+{%extends 'base.html'%} {%block title%}{%endblock%} {%block body%}
+<form action="/adminslogin" method="post">
+
+    <input type="text" placeholder="UserName" name="username" id="username" required autofocus
+    autocomplete="off" {%if session["admin_name"]
+    %}value='{{session["admin_name"]}}'{%endif%} />
+
+    <input
+      type="password"
+      name="password"
+      id="password"
+      required
+      placeholder="Password"
+      autocomplete="off"
+    />
+
+  </div>
+  {%if error%}<small>{{error}}</small>{%endif%}
+  <div class="submit"><input type="submit" value="Log In" /></div>
+</form>
+{%endblock%}

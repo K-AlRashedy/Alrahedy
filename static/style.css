@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  outline: none;
+  border: none;
+}
+*::selection {
+  background-color: var(--btn-hover);
+}
+:root {
+  --mainColor: #8e3e71;
+  --dark: #060606;
+  --light: #f6f6f6;
+  --btn-hover: #8e3e71dd;
+  font-size: 10px;
+  font-family: sans-serif;
+}
+
+/* main part & cards */
+main {
+  margin-top: 5rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.product-card * {
+  font-size: 1.6rem;
+}
+.product-card {
+  border: 1px solid var(--purble);
+  width: 23.4rem;
+  height: 33.2rem;
+  display: grid;
+  grid-template-rows: 60% 40%;
+  border-radius: 0.5rem;
+  grid-template-areas:
+    "img"
+    "details";
+  flex-grow: 2;
+}
+.product-card:hover {
+  box-shadow: 2px 2px 5px var(--purble);
+}
+
+.product-card .card-img-box img {
+  height: 100%;
+  margin: 0 calc((100% - 202px) / 2);
+}
+.card-details * {
+  padding: 0.3rem 1rem;
+}
+.card-details a {
+  text-decoration: none;
+  color: inherit;
+  padding: 0;
+}
+.card-details .card-name {
+  direction: rtl;
+}
+.card-details .price {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.card-details .price .before {
+  font-size: 1rem;
+  align-self: flex-end;
+  color: red;
+  text-decoration: line-through;
+}
+.buy-cart-btns {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.buy-cart-btns * {
+  font-size: 1.2rem;
+  width: 80%;
+  background-color: var(--mainColor);
+  color: var(--light);
+  font-weight: bolder;
+  cursor: pointer;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  user-select: none;
+}
+.buy-cart-btns *:hover {
+  background-color: var(--btn-hover);
+}
+.buy-cart-btns *:active {
+  background-color: var(--mainColor);
+}
+@media (max-width: 500px) {
+  .product-card {
+    width: 100%;
+    height: 152px;
+    grid-template-rows: 1fr;
+    grid-template-columns: minmax(15.2rem, 40%) 1fr;
+    grid-template-areas: "img details";
+    align-items: center;
+  }
+  .product-card .card-img-box {
+    height: 15.2rem;
+  }
+  .product-card .card-img-box img {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+
